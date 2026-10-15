@@ -12,10 +12,43 @@
     <div class="brand">Placement Test<small>Bahasa Inggris · Kelas 8 SMP</small></div>
     <div class="spacer"></div>
     <div class="meta" id="step-meta"></div>
+    <button class="fs-btn" id="fs-btn" type="button" hidden aria-pressed="false">
+      <svg id="fs-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg>
+      <span id="fs-label">Layar penuh</span>
+    </button>
   </div>
   <div class="progress" id="progress" hidden><i id="progress-bar"></i></div>
 </header>
 <main class="wrap" id="app"><div class="card">Memuat soal…</div></main>
+<script>
+(function () {
+  var btn = document.getElementById('fs-btn');
+  var root = document.documentElement;
+  var request = root.requestFullscreen || root.webkitRequestFullscreen;
+  var exit = document.exitFullscreen || document.webkitExitFullscreen;
+  // iPhone Safari tidak mendukung layar penuh untuk halaman web: tombol disembunyikan di sana.
+  if (!request || !exit) return;
+  var ENTER = '<path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/>';
+  var LEAVE = '<path d="M6 2v4H2M14 6h-4V2M10 14v-4h4M2 10h4v4"/>';
+  function active() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function paint() {
+    var on = active();
+    document.getElementById('fs-icon').innerHTML = on ? LEAVE : ENTER;
+    document.getElementById('fs-label').textContent = on ? 'Keluar layar penuh' : 'Layar penuh';
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function () {
+    try {
+      var p = active() ? exit.call(document) : request.call(root);
+      if (p && p.catch) p.catch(function () {});
+    } catch (e) { /* abaikan */ }
+  });
+  document.addEventListener('fullscreenchange', paint);
+  document.addEventListener('webkitfullscreenchange', paint);
+  btn.hidden = false;
+  paint();
+})();
+</script>
 <script src="config.js"></script>
 <script src="app.js"></script>
 </body>

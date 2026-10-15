@@ -143,3 +143,15 @@ tr.detail td { background: #f8fafc; padding: 16px 18px; }
   .card { padding: 18px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* tombol layar penuh (halaman murid) */
+.fs-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 6px 12px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.45); background: transparent; color: #fff; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.fs-btn:hover { background: rgba(255,255,255,0.14); }
+.fs-btn:focus-visible { outline-color: #fff; }
+@media (max-width: 480px) {
+  .bar-inner { flex-wrap: wrap; row-gap: 8px; }
+  #step-meta { order: 3; }
+  .fs-btn #fs-label { display: none; }
+  .fs-btn { padding: 6px 10px; }
+}
