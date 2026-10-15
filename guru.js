@@ -135,7 +135,8 @@
   }
   function inputCell(r, k) {
     const v = r[k];
-    return `<td class="num"><input class="mini" type="number" inputmode="numeric" min="0" max="16" step="1" ` +
+    const tag = k === 'e' && v != null && isAuto(r.id) ? '<span class="tag-auto" title="Diisi otomatis dari saran sistem, belum diperiksa guru">otomatis</span>' : '';
+    return `<td class="num">${tag}<input class="mini" type="number" inputmode="numeric" min="0" max="16" step="1" ` +
       `data-id="${r.id}" data-k="${k}" value="${v == null ? '' : v}" aria-label="Nilai ${k === 'e' ? 'menulis' : 'berbicara'} ${esc(r.name)}"></td>`;
   }
   function rowHtml(r) {
@@ -173,6 +174,38 @@
   ];
   const ivOpen = new Set();
 
+  /* ---------- saran nilai menulis otomatis (berbasis aturan) ---------- */
+  const AUTO = window.AutoScore;
+  const isAuto = (id) => { try { return localStorage.getItem('pt-auto-' + id) === '1'; } catch (e) { return false; } };
+  const setAuto = (id, on) => { try { if (on) localStorage.setItem('pt-auto-' + id, '1'); else localStorage.removeItem('pt-auto-' + id); } catch (e) { /* abaikan */ } };
+  let bulkArmed = false, bulkTimer = null;
+  function suggestionOf(r) { return AUTO ? AUTO.suggest(r.writing.t1, r.writing.t2) : null; }
+  function applySuggestion(r) {
+    const s = suggestionOf(r);
+    if (!s) return Promise.resolve();
+    const rub = getRub(r.id);
+    rub.e = s.aspects.map((x) => Math.max(0, x));
+    setRub(r.id, rub);
+    setAuto(r.id, true);
+    return patch(r.id, { e: s.total });
+  }
+  function suggestHtml(r) {
+    const s = suggestionOf(r);
+    if (!s) return '';
+    const names = RUBRIC.e.aspects.map((a) => a.n);
+    if (s.empty) {
+      return `<div class="sugg"><h4>Saran otomatis</h4><p>Murid tidak menulis apa pun, saran nilai <strong>0</strong>.</p>` +
+        `<button class="btn ghost small" type="button" data-sugg="${r.id}">Pakai saran ini</button></div>`;
+    }
+    const list = s.aspects.map((v, i) => `<li>${esc(names[i])}: <strong>${v}</strong></li>`).join('');
+    const warn = s.warnings.map((w) => `<p class="sugg-warn">${esc(w)}</p>`).join('');
+    return `<div class="sugg"><h4>Saran otomatis <span class="tag-auto">perkiraan</span></h4>` +
+      `<p>Saran nilai <strong>${s.total}</strong> dari 16 (${s.metrics.words} kata, ${s.metrics.sentences} kalimat).</p>` +
+      `<ul>${list}</ul>${warn}` +
+      `<p class="sugg-note">Dihitung dari bentuk tulisan (panjang, variasi kata, struktur, tanda baca), bukan dari makna. Tetap baca tulisannya sebelum memakai saran ini.</p>` +
+      `<button class="btn ghost small" type="button" data-sugg="${r.id}">Pakai saran ini</button></div>`;
+  }
+
   function getRub(id) {
     try {
       const v = JSON.parse(localStorage.getItem('pt-rubric-' + id) || 'null');
@@ -197,7 +230,7 @@
     const foot = picked === 4
       ? `Jumlah <strong>${sum}</strong> dari 16. Tersimpan sebagai nilai ${spec.title}.`
       : `${picked} dari 4 aspek dipilih. Nilai tersimpan otomatis setelah keempatnya dipilih.`;
-    return `<div class="rubric"><h4>Nilai ${spec.title} dengan rubrik</h4>${rows}<div class="rub-foot">${foot}</div></div>`;
+    return `<div class="rubric"><h4>Nilai ${spec.title} dengan rubrik</h4>${k === 'e' ? suggestHtml(r) : ''}${rows}<div class="rub-foot">${foot}</div></div>`;
   }
   function interviewHtml(r) {
     const open = ivOpen.has(r.id) ? ' open' : '';
@@ -264,7 +297,11 @@
       const id = t.dataset.toggle;
       if (expanded.has(id)) expanded.delete(id); else expanded.add(id);
       renderRows();
+    } else if (t.dataset.sugg) {
+      const r = results.find((x) => x.id === t.dataset.sugg);
+      if (r) applySuggestion(r).then(renderRows);
     } else if (t.dataset.rub) {
+      if (t.dataset.rub === 'e') setAuto(t.dataset.id, false);
       const id = t.dataset.id, k = t.dataset.rub, i = Number(t.dataset.i), v = Number(t.dataset.v);
       const rub = getRub(id);
       rub[k][i] = rub[k][i] === v ? 0 : v;
@@ -318,10 +355,30 @@
       const raw = t.value.trim();
       const v = raw === '' ? null : Number(raw);
       if (v !== null && (!Number.isInteger(v) || v < 0 || v > 16)) { t.setAttribute('aria-invalid', 'true'); return; }
-      patch(t.dataset.id, { [t.dataset.k]: v }, t);
+      if (t.dataset.k === 'e') setAuto(t.dataset.id, false);
+      patch(t.dataset.id, { [t.dataset.k]: v }, t).then(() => { if (t.dataset.k === 'e') renderRows(); });
     } else if (t.classList.contains('note-inp')) {
       patch(t.dataset.id, { note: t.value }, t);
     }
+  });
+
+  /* ---------- isi nilai menulis otomatis untuk semua yang belum dinilai ---------- */
+  const bulk = $('autofill');
+  if (bulk) bulk.addEventListener('click', () => {
+    const todo = results.filter((r) => r.e == null);
+    if (!todo.length) { bulk.textContent = 'Semua sudah bernilai'; setTimeout(() => { bulk.textContent = 'Isi nilai Menulis otomatis'; }, 2000); return; }
+    if (!bulkArmed) {
+      bulkArmed = true;
+      bulk.textContent = 'Isi ' + todo.length + ' murid? Klik lagi';
+      bulk.classList.add('danger');
+      bulkTimer = setTimeout(() => { bulkArmed = false; bulk.classList.remove('danger'); bulk.textContent = 'Isi nilai Menulis otomatis'; }, 4000);
+      return;
+    }
+    clearTimeout(bulkTimer); bulkArmed = false; bulk.classList.remove('danger');
+    bulk.disabled = true; bulk.textContent = 'Mengisi…';
+    todo.reduce((p, r) => p.then(() => applySuggestion(r)), Promise.resolve()).then(() => {
+      bulk.disabled = false; bulk.textContent = 'Isi nilai Menulis otomatis'; renderRows();
+    });
   });
 
   /* ---------- CSV ---------- */

@@ -62,6 +62,7 @@
             <option value="hi">Rata-rata tertinggi</option>
             <option value="lo">Rata-rata terendah</option>
           </select></div>
+        <button class="btn ghost" id="autofill" type="button" title="Mengisi nilai Menulis yang masih kosong dengan saran otomatis. Nilai yang sudah ada tidak diubah.">Isi nilai Menulis otomatis</button>
         <button class="btn ghost" id="csv" type="button">Unduh CSV</button>
       </div>
       <div class="table-scroll">
@@ -78,12 +79,13 @@
       <div class="empty" id="empty" hidden></div>
     </section>
 
-    <p class="lead" style="font-size:13px">Nilai menulis dan berbicara diisi guru dengan menjumlahkan skor 4 aspek rubrik (masing-masing 1 sampai 4, maksimal 16). Kelas muncul otomatis setelah kelima nilai terisi. Rata-rata level = (Tata bahasa + Membaca + Menyimak + Menulis + 2 × Berbicara) ÷ 6.</p>
+    <p class="lead" style="font-size:13px">Nilai menulis dan berbicara diisi guru dengan menjumlahkan skor 4 aspek rubrik (masing-masing 1 sampai 4, maksimal 16). Nilai menulis juga bisa diisi dengan saran otomatis (perkiraan dari bentuk tulisan, bukan pemahaman makna), yang ditandai "otomatis" sampai Anda mengubahnya. Kelas muncul otomatis setelah kelima nilai terisi. Rata-rata level = (Tata bahasa + Membaca + Menyimak + Menulis + 2 × Berbicara) ÷ 6.</p>
   </div>
 </main>
 
 <script src="config.js"></script>
 <script src="scoring.js"></script>
+<script src="autoscore.js"></script>
 <script src="guru.js"></script>
 </body>
 </html>

@@ -173,3 +173,11 @@ tr.detail td { background: #f8fafc; padding: 16px 18px; }
 .ivw .iv-note { font-size: 13px; color: var(--muted); margin: 8px 0; }
 .ivw .iv-stage { margin-top: 10px; font-size: 14px; }
 .ivw .iv-stage ol { margin: 4px 0 0; padding-left: 20px; }
+
+.tag-auto { display: inline-block; margin-right: 6px; padding: 1px 7px; border-radius: 999px; background: #fff4d6; color: #7a5a00; border: 1px solid #ecd48a; font-size: 11px; font-weight: 600; vertical-align: middle; }
+.sugg { background: #f3f7fc; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; font-size: 14px; }
+.sugg h4 { margin: 0 0 6px; }
+.sugg p { margin: 4px 0; }
+.sugg ul { margin: 4px 0; padding-left: 20px; }
+.sugg-warn { color: #9b2c2c; font-weight: 600; }
+.sugg-note { color: var(--muted); font-size: 12.5px; }
