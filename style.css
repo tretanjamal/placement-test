@@ -155,3 +155,21 @@ tr.detail td { background: #f8fafc; padding: 16px 18px; }
   .fs-btn #fs-label { display: none; }
   .fs-btn { padding: 6px 10px; }
 }
+
+/* panel rubrik dan wawancara (halaman guru) */
+.rubric { margin-top: 16px; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.rubric h4 { margin: 0 0 8px; }
+.rub-row { padding: 8px 0; border-top: 1px dashed var(--line); }
+.rub-row:first-of-type { border-top: 0; }
+.rub-name { font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+.seg { display: inline-flex; border: 1px solid #b9c6d6; border-radius: 8px; overflow: hidden; }
+.seg button { min-width: 44px; min-height: 36px; border: 0; border-left: 1px solid #b9c6d6; background: #fff; font-weight: 600; }
+.seg button:first-child { border-left: 0; }
+.seg button.on { background: var(--navy); color: #fff; }
+.rub-desc { font-size: 13px; color: var(--muted); margin-top: 6px; min-height: 18px; }
+.rub-foot { margin-top: 8px; font-size: 13px; color: var(--ink); background: var(--surface-2); border-radius: 8px; padding: 8px 10px; }
+.ivw { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.ivw summary { cursor: pointer; font-weight: 600; font-size: 14px; }
+.ivw .iv-note { font-size: 13px; color: var(--muted); margin: 8px 0; }
+.ivw .iv-stage { margin-top: 10px; font-size: 14px; }
+.ivw .iv-stage ol { margin: 4px 0 0; padding-left: 20px; }

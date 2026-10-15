@@ -150,12 +150,71 @@
     if (open) h += detailHtml(r, cc);
     return h;
   }
+  /* ---------- rubrik penilaian (menulis dan berbicara) ---------- */
+  const RUBRIC = {
+    e: { title: 'Menulis', aspects: [
+      { n: 'Isi dan penyelesaian tugas', d: ['Sangat sedikit, banyak yang tidak relevan', 'Tugas hanya selesai sebagian, ide terbatas', 'Tugas selesai, ide jelas', 'Tugas selesai dengan ide berkembang dan ada detail'] },
+      { n: 'Tata bahasa', d: ['Hanya kata atau frasa, hampir semua salah', 'Kalimat sederhana, sering salah', 'Kalimat sederhana umumnya benar, mulai ada kalimat majemuk', 'Struktur beragam (past tense, because, and, but), kesalahan jarang'] },
+      { n: 'Kosakata', d: ['Sangat terbatas', 'Dasar dan berulang', 'Cukup bervariasi dan tepat', 'Bervariasi dan tepat, ada ungkapan yang wajar'] },
+      { n: 'Ejaan, tanda baca, dan keruntutan', d: ['Sulit dibaca', 'Banyak salah tetapi masih dapat dipahami', 'Sedikit salah, urutan ide cukup jelas', 'Hampir tanpa salah, runtut dengan kata penghubung'] }
+    ] },
+    f: { title: 'Berbicara', aspects: [
+      { n: 'Kelancaran', d: ['Banyak diam, jawaban satu kata', 'Sering terhenti, jawaban pendek', 'Cukup lancar, kadang terhenti mencari kata', 'Lancar, jawaban panjang dan berkembang'] },
+      { n: 'Kosakata', d: ['Sangat terbatas, sering memakai bahasa Indonesia', 'Dasar dan berulang', 'Cukup bervariasi untuk topik sehari-hari', 'Bervariasi dan tepat, mampu menjelaskan dengan kata lain'] },
+      { n: 'Tata bahasa', d: ['Hanya kata atau frasa', 'Kalimat sederhana dengan banyak salah', 'Kalimat sederhana umumnya benar, ada upaya kalimat kompleks', 'Beragam struktur dan kala, kesalahan jarang'] },
+      { n: 'Pemahaman dan pelafalan', d: ['Sulit paham pertanyaan, pelafalan sulit dipahami', 'Perlu pengulangan, pelafalan sering mengganggu', 'Paham pertanyaan umum, pelafalan cukup jelas', 'Paham tanpa pengulangan, pelafalan jelas'] }
+    ] }
+  };
+  const INTERVIEW = [
+    { t: 'Tahap 1: Pemanasan (A1)', q: ["Hello! What's your name?", 'How old are you?', 'Where do you live?', 'Do you have any brothers or sisters?', "What's your favourite colour (or food)?"] },
+    { t: 'Tahap 2: Kehidupan sehari-hari (A2)', q: ['What do you usually do after school?', 'Tell me about your family.', 'What is your favourite subject at school? Why?', 'What did you do last weekend?', 'What do you like to do in your free time?'] },
+    { t: 'Tahap 3: Pengalaman dan pendapat (B1)', q: ['Tell me about a place you visited that you really liked. What did you do there?', 'What do you think about using phones at school? Why?', 'What are you going to do during the next school holiday?', 'Describe your best friend. What makes him or her a good friend?', 'What is the most difficult thing about learning English for you?'] },
+    { t: 'Tahap 4: Tantangan (B2, hanya untuk siswa yang lancar)', q: ['If you could travel to any country, where would you go and why?', 'Some people say students should wear school uniforms. Do you agree? Why or why not?', 'How do you think technology will change schools in the future?'] }
+  ];
+  const ivOpen = new Set();
+
+  function getRub(id) {
+    try {
+      const v = JSON.parse(localStorage.getItem('pt-rubric-' + id) || 'null');
+      if (v && v.e && v.f) return v;
+    } catch (e) { /* abaikan */ }
+    return { e: [0, 0, 0, 0], f: [0, 0, 0, 0] };
+  }
+  function setRub(id, v) {
+    try { localStorage.setItem('pt-rubric-' + id, JSON.stringify(v)); } catch (e) { /* abaikan */ }
+  }
+  function rubricHtml(r, k) {
+    const spec = RUBRIC[k];
+    const saved = getRub(r.id)[k];
+    const rows = spec.aspects.map((a, i) => {
+      const btns = [1, 2, 3, 4].map((v) =>
+        `<button type="button" class="${saved[i] === v ? 'on' : ''}" data-rub="${k}" data-id="${r.id}" data-i="${i}" data-v="${v}" aria-pressed="${saved[i] === v}" aria-label="${esc(a.n)} skor ${v}">${v}</button>`).join('');
+      return `<div class="rub-row"><div class="rub-name">${esc(a.n)}</div><div class="seg" role="group" aria-label="${esc(a.n)}">${btns}</div>` +
+        `<div class="rub-desc">${saved[i] ? esc(a.d[saved[i] - 1]) : 'Pilih skor 1 sampai 4'}</div></div>`;
+    }).join('');
+    const picked = saved.filter((x) => x > 0).length;
+    const sum = saved.reduce((a, b) => a + b, 0);
+    const foot = picked === 4
+      ? `Jumlah <strong>${sum}</strong> dari 16. Tersimpan sebagai nilai ${spec.title}.`
+      : `${picked} dari 4 aspek dipilih. Nilai tersimpan otomatis setelah keempatnya dipilih.`;
+    return `<div class="rubric"><h4>Nilai ${spec.title} dengan rubrik</h4>${rows}<div class="rub-foot">${foot}</div></div>`;
+  }
+  function interviewHtml(r) {
+    const open = ivOpen.has(r.id) ? ' open' : '';
+    const body = INTERVIEW.map((s) =>
+      `<div class="iv-stage"><strong>${esc(s.t)}</strong><ol>${s.q.map((q) => '<li>' + esc(q) + '</li>').join('')}</ol></div>`).join('');
+    return `<details class="ivw" data-iv="${r.id}"${open}><summary>Pertanyaan wawancara</summary>` +
+      `<p class="iv-note">Mulai dari tahap 1 dan naik bertahap. Berhenti naik jika murid kesulitan menjawab dua pertanyaan berturut-turut. Jangan mengoreksi kesalahan saat wawancara.</p>${body}</details>`;
+  }
+
   function detailHtml(r, cc) {
     const armed = delArmed === r.id;
     return `<tr class="detail" data-detail="${r.id}"><td colspan="10"><div class="detail"><div class="detail-grid">
       <div><h4>Menulis, Tugas 1</h4><div class="write-box">${esc(r.writing.t1) || '<span class="pending">Tidak diisi</span>'}</div>
-        <h4 style="margin-top:12px">Menulis, Tugas 2</h4><div class="write-box">${esc(r.writing.t2) || '<span class="pending">Tidak diisi</span>'}</div></div>
-      <div><h4>Catatan guru</h4>
+        <h4 style="margin-top:12px">Menulis, Tugas 2</h4><div class="write-box">${esc(r.writing.t2) || '<span class="pending">Tidak diisi</span>'}</div>
+        ${rubricHtml(r, 'e')}</div>
+      <div><h4>Berbicara (wawancara langsung)</h4>${interviewHtml(r)}${rubricHtml(r, 'f')}
+        <h4 style="margin-top:18px">Catatan guru</h4>
         <input class="inp note-inp" type="text" maxlength="300" data-id="${r.id}" value="${esc(r.note)}" placeholder="Misalnya: pemalu saat berbicara">
         <p style="margin:12px 0 4px;color:var(--muted);font-size:14px">Lama mengerjakan: ${durStr(r.durationSec)}</p>
         <div class="flag" data-flags="${r.id}">${cc.flags.map(esc).join('<br>')}</div>
@@ -205,6 +264,17 @@
       const id = t.dataset.toggle;
       if (expanded.has(id)) expanded.delete(id); else expanded.add(id);
       renderRows();
+    } else if (t.dataset.rub) {
+      const id = t.dataset.id, k = t.dataset.rub, i = Number(t.dataset.i), v = Number(t.dataset.v);
+      const rub = getRub(id);
+      rub[k][i] = rub[k][i] === v ? 0 : v;
+      setRub(id, rub);
+      if (rub[k].every((x) => x > 0)) {
+        const total = rub[k].reduce((a, b) => a + b, 0);
+        patch(id, { [k]: total }).then(renderRows);
+      } else {
+        renderRows();
+      }
     } else if (t.dataset.del) {
       const id = t.dataset.del;
       if (delArmed === id) {
@@ -220,6 +290,11 @@
       }
     }
   });
+
+  $('rows').addEventListener('toggle', (e) => {
+    const d = e.target;
+    if (d && d.dataset && d.dataset.iv) { if (d.open) ivOpen.add(d.dataset.iv); else ivOpen.delete(d.dataset.iv); }
+  }, true);
 
   function patch(id, body, inputEl) {
     return call(Object.assign({ action: 'patch', id: id }, body)).then((r) => {
