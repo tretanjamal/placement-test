@@ -1,0 +1,540 @@
+{
+ "b": {
+  "title": "Tata Bahasa dan Kosakata",
+  "instr": "Pilih satu jawaban yang paling tepat. Soal makin sulit ke bawah. Jika tidak tahu, lewati saja.",
+  "items": [
+   {
+    "q": "My name ___ Rina.",
+    "o": [
+     "am",
+     "is",
+     "are",
+     "be"
+    ]
+   },
+   {
+    "q": "There ___ a book on the table.",
+    "o": [
+     "is",
+     "are",
+     "am",
+     "be"
+    ]
+   },
+   {
+    "q": "I have two ___.",
+    "o": [
+     "cat",
+     "cats",
+     "cates",
+     "a cat"
+    ]
+   },
+   {
+    "q": "___ do you live? In Surabaya.",
+    "o": [
+     "Who",
+     "What",
+     "Where",
+     "When"
+    ]
+   },
+   {
+    "q": "A pen, a ruler, and an eraser are things in a ___.",
+    "o": [
+     "kitchen",
+     "classroom",
+     "garden",
+     "bathroom"
+    ]
+   },
+   {
+    "q": "He ___ football every Sunday.",
+    "o": [
+     "play",
+     "plays",
+     "playing",
+     "is play"
+    ]
+   },
+   {
+    "q": "This is my brother. ___ name is Dimas.",
+    "o": [
+     "He",
+     "His",
+     "Him",
+     "She"
+    ]
+   },
+   {
+    "q": "Monday, Tuesday, and Wednesday are ___.",
+    "o": [
+     "months",
+     "colours",
+     "days",
+     "numbers"
+    ]
+   },
+   {
+    "q": "I ___ my homework now.",
+    "o": [
+     "do",
+     "does",
+     "am doing",
+     "did"
+    ]
+   },
+   {
+    "q": "We ___ to Bali last holiday.",
+    "o": [
+     "go",
+     "goes",
+     "went",
+     "going"
+    ]
+   },
+   {
+    "q": "My mother is ___ than my father.",
+    "o": [
+     "taller",
+     "more tall",
+     "tallest",
+     "tall"
+    ]
+   },
+   {
+    "q": "There isn't ___ milk in the fridge.",
+    "o": [
+     "some",
+     "any",
+     "a",
+     "many"
+    ]
+   },
+   {
+    "q": "\"Can I borrow your pen?\" \"___\"",
+    "o": [
+     "Yes, you are welcome.",
+     "Sure, here you are.",
+     "No, I am fine.",
+     "Me too."
+    ]
+   },
+   {
+    "q": "She is good ___ Math.",
+    "o": [
+     "in",
+     "on",
+     "at",
+     "with"
+    ]
+   },
+   {
+    "q": "What time ___ the movie start?",
+    "o": [
+     "do",
+     "does",
+     "is",
+     "are"
+    ]
+   },
+   {
+    "q": "A person who teaches in a school is a ___.",
+    "o": [
+     "doctor",
+     "farmer",
+     "teacher",
+     "driver"
+    ]
+   },
+   {
+    "q": "I ___ not eat breakfast this morning.",
+    "o": [
+     "do",
+     "does",
+     "did",
+     "am"
+    ]
+   },
+   {
+    "q": "How ___ students are there in your class?",
+    "o": [
+     "much",
+     "many",
+     "long",
+     "often"
+    ]
+   },
+   {
+    "q": "If it rains tomorrow, we ___ at home.",
+    "o": [
+     "stay",
+     "stayed",
+     "will stay",
+     "would stay"
+    ]
+   },
+   {
+    "q": "I have lived in this city ___ 2019.",
+    "o": [
+     "for",
+     "since",
+     "from",
+     "during"
+    ]
+   },
+   {
+    "q": "This bag is ___ expensive for me. I can't buy it.",
+    "o": [
+     "too",
+     "enough",
+     "very",
+     "so"
+    ]
+   },
+   {
+    "q": "The book ___ by many students every year.",
+    "o": [
+     "read",
+     "reads",
+     "is read",
+     "is reading"
+    ]
+   },
+   {
+    "q": "You ___ wear a helmet when you ride a motorbike. It is the law.",
+    "o": [
+     "can",
+     "might",
+     "must",
+     "would"
+    ]
+   },
+   {
+    "q": "I'm really looking forward ___ the school trip.",
+    "o": [
+     "to",
+     "at",
+     "for",
+     "of"
+    ]
+   },
+   {
+    "q": "The boy ___ is sitting next to me is my cousin.",
+    "o": [
+     "which",
+     "who",
+     "whose",
+     "what"
+    ]
+   },
+   {
+    "q": "To make something better is to ___ it.",
+    "o": [
+     "improve",
+     "borrow",
+     "destroy",
+     "forget"
+    ]
+   },
+   {
+    "q": "If I ___ more time, I would learn another language.",
+    "o": [
+     "have",
+     "had",
+     "will have",
+     "would have"
+    ]
+   },
+   {
+    "q": "By the time we arrived, the film ___.",
+    "o": [
+     "already started",
+     "has already started",
+     "had already started",
+     "was already starting"
+    ]
+   },
+   {
+    "q": "She suggested ___ to the museum on Saturday.",
+    "o": [
+     "to go",
+     "going",
+     "go",
+     "went"
+    ]
+   },
+   {
+    "q": "\"Despite the heavy rain, the match went ahead.\" This means ___.",
+    "o": [
+     "because of the rain",
+     "even though it rained",
+     "after the rain stopped",
+     "if it rained"
+    ]
+   }
+  ]
+ },
+ "c": {
+  "title": "Membaca",
+  "instr": "Baca teks, lalu pilih jawaban yang paling tepat.",
+  "passages": [
+   {
+    "title": "Text 1: Dina's Weekend",
+    "text": "Hi! My name is Dina. I am thirteen years old and I live in Surabaya with my parents and my little brother, Raka. On Saturday morning, I usually help my mother at home. In the afternoon, I play badminton with my friends in the park near our house. On Sunday, my family visits my grandmother. She cooks delicious fried rice for us. I love weekends because I can relax and spend time with my family.",
+    "items": [
+     {
+      "q": "How old is Dina?",
+      "o": [
+       "12",
+       "13",
+       "14",
+       "15"
+      ]
+     },
+     {
+      "q": "Who does Dina live with?",
+      "o": [
+       "Her grandmother",
+       "Her friends",
+       "Her parents and her brother",
+       "Her cousin"
+      ]
+     },
+     {
+      "q": "What does Dina do on Saturday afternoon?",
+      "o": [
+       "She helps her mother.",
+       "She plays badminton.",
+       "She visits her grandmother.",
+       "She cooks fried rice."
+      ]
+     },
+     {
+      "q": "Where does Dina go on Sunday?",
+      "o": [
+       "To the park",
+       "To her grandmother's house",
+       "To school",
+       "To a restaurant"
+      ]
+     },
+     {
+      "q": "Why does Dina love weekends?",
+      "o": [
+       "She doesn't have homework.",
+       "She can relax and spend time with her family.",
+       "She can play games all day.",
+       "She can cook fried rice."
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Text 2: The Phone Rule at Bima's School",
+    "text": "Last year, Bima's school introduced a new rule: students must leave their phones in a locker during lessons. At first, many students were unhappy. Bima said, \"I use my phone to check the dictionary, so this rule is not fair.\" However, after two months, his teacher noticed that students paid more attention in class and talked to each other more during breaks. Test scores in English also went up a little. Today, most students agree that the rule is useful, although some still want to use their phones for learning activities. The school is now thinking about allowing phones in special projects, with the teacher's permission.",
+    "items": [
+     {
+      "q": "What is the new rule?",
+      "o": [
+       "Students cannot bring phones to school.",
+       "Students must keep their phones in a locker during lessons.",
+       "Students can use phones only in the library.",
+       "Students must use phones for the dictionary."
+      ]
+     },
+     {
+      "q": "At first, many students were ___.",
+      "o": [
+       "happy",
+       "bored",
+       "unhappy",
+       "confused"
+      ]
+     },
+     {
+      "q": "What changed after two months?",
+      "o": [
+       "Students became noisier.",
+       "Students paid more attention and talked more during breaks.",
+       "Teachers stopped giving homework.",
+       "Students got worse English scores."
+      ]
+     },
+     {
+      "q": "Why do some students still want to use phones?",
+      "o": [
+       "To play games",
+       "To chat with friends",
+       "For learning activities",
+       "To take photos"
+      ]
+     },
+     {
+      "q": "What is the school thinking about now?",
+      "o": [
+       "Removing the lockers",
+       "Allowing phones in special projects with the teacher's permission",
+       "Banning phones from the whole school",
+       "Letting students use phones at any time"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "d": {
+  "title": "Menyimak",
+  "instr": "Tekan tombol putar untuk mendengarkan. Setiap rekaman bisa diputar 2 kali. Lalu jawab soalnya.",
+  "clips": [
+   {
+    "title": "Rekaman 1: Dialog",
+    "audio": "listening1.mp3",
+    "script": [
+     [
+      "A",
+      "Hi, Tono. What are you doing this afternoon?"
+     ],
+     [
+      "B",
+      "I'm going to the library. I need a book for my science project."
+     ],
+     [
+      "A",
+      "Can I come with you? I want to return a book."
+     ],
+     [
+      "B",
+      "Sure! The library closes at four o'clock, so let's go at two."
+     ],
+     [
+      "A",
+      "Okay. I'll meet you in front of the school gate at two."
+     ]
+    ],
+    "items": [
+     {
+      "q": "Where is Tono going this afternoon?",
+      "o": [
+       "To the cinema",
+       "To the library",
+       "To the market",
+       "To the swimming pool"
+      ]
+     },
+     {
+      "q": "Why does Tono need a book?",
+      "o": [
+       "For his science project",
+       "For his birthday",
+       "For his sister",
+       "For his English test"
+      ]
+     },
+     {
+      "q": "Why does Sari want to go to the library?",
+      "o": [
+       "To buy a book",
+       "To return a book",
+       "To meet a teacher",
+       "To do her homework"
+      ]
+     },
+     {
+      "q": "What time does the library close?",
+      "o": [
+       "Two o'clock",
+       "Three o'clock",
+       "Four o'clock",
+       "Five o'clock"
+      ]
+     },
+     {
+      "q": "Where will Sari and Tono meet?",
+      "o": [
+       "In front of the school gate",
+       "At the library",
+       "At Sari's house",
+       "At the bus stop"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Rekaman 2: Pengumuman",
+    "audio": "listening2.mp3",
+    "script": [
+     [
+      "A",
+      "Good morning, everyone. This is an announcement about English Day next Friday. The event will start at eight o'clock in the school hall, not on the field as we planned before, because the weather may be rainy. Every class will perform a short drama in English. Each drama must be no longer than five minutes. Please bring your costumes and props on Thursday afternoon, and give them to Mrs. Lestari in the teachers' room. Students who bring food and drinks should keep them outside the hall. Thank you, and good luck!"
+     ]
+    ],
+    "items": [
+     {
+      "q": "What is the announcement about?",
+      "o": [
+       "A sports match",
+       "English Day",
+       "A school trip",
+       "An exam"
+      ]
+     },
+     {
+      "q": "Why was the place changed to the school hall?",
+      "o": [
+       "The field is too small.",
+       "The weather may be rainy.",
+       "The field is dirty.",
+       "The teachers like the hall better."
+      ]
+     },
+     {
+      "q": "How long can each drama be?",
+      "o": [
+       "Three minutes",
+       "Five minutes",
+       "Ten minutes",
+       "Fifteen minutes"
+      ]
+     },
+     {
+      "q": "When should students bring their costumes and props?",
+      "o": [
+       "Friday morning",
+       "Wednesday morning",
+       "Thursday morning",
+       "Thursday afternoon"
+      ]
+     },
+     {
+      "q": "Who should receive the costumes and props?",
+      "o": [
+       "The principal",
+       "Mrs. Lestari",
+       "The class teacher",
+       "The librarian"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "e": {
+  "title": "Menulis",
+  "instr": "Tulis dalam bahasa Inggris. Tidak apa-apa jika ada kesalahan, tulis sebisamu.",
+  "tasks": [
+   {
+    "id": "t1",
+    "title": "Tugas 1 (wajib)",
+    "prompt": "Write 3 to 5 sentences about yourself. You can write about your name, your age, your family, and what you like to do.",
+    "min": 3
+   },
+   {
+    "id": "t2",
+    "title": "Tugas 2 (jika kamu mampu)",
+    "prompt": "Write a short paragraph (about 60 to 80 words) about your best friend or your favourite activity at school. Say what you do, when you do it, and why you like it.",
+    "min": 60
+   }
+  ]
+ }
+}

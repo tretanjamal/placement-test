@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hasil Placement Test (Guru)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="bar wide">
+  <div class="bar-inner">
+    <div class="brand">Hasil Placement Test<small>Bahasa Inggris · Kelas 8 SMP · Halaman guru</small></div>
+    <div class="spacer"></div>
+    <span class="live" id="live" hidden><i></i><span id="live-text">Terhubung</span></span>
+    <button class="btn ghost small" id="logout" type="button" hidden>Keluar</button>
+  </div>
+</header>
+
+<main class="wrap wide">
+  <section class="card" id="login" style="max-width:420px;margin:24px auto 0;width:100%">
+    <h2>Masuk sebagai guru</h2>
+    <p class="lead">Masukkan PIN guru untuk melihat hasil murid.</p>
+    <form id="login-form" class="stack">
+      <div><label class="fl" for="pin">PIN</label>
+        <input class="inp" id="pin" type="password" inputmode="numeric" autocomplete="current-password">
+        <div class="err" id="login-err"></div></div>
+      <button class="btn block" type="submit">Masuk</button>
+    </form>
+  </section>
+
+  <div id="dash" hidden class="stack" style="gap:16px">
+    <div class="grid-top">
+      <section class="card">
+        <h2 style="font-size:18px">Sebaran kelas</h2>
+        <div class="dist-bar" id="dist-bar" role="img" aria-label="Sebaran siswa per kelas"></div>
+        <div class="legend" id="legend"></div>
+        <p class="lead" style="margin:14px 0 0;font-size:14px" id="sum-sub"></p>
+      </section>
+      <section class="card">
+        <h2 style="font-size:18px">Alamat untuk murid</h2>
+        <p class="lead" style="font-size:14px;margin-bottom:0">Bagikan alamat ini ke murid. Murid bisa membukanya di browser HP atau tablet dari mana saja, asal ada internet.</p>
+        <div id="urls"></div>
+      </section>
+    </div>
+
+    <section class="card">
+      <div class="toolbar">
+        <div><label class="fl" for="q">Cari nama</label><input class="inp" id="q" type="search" placeholder="Ketik nama"></div>
+        <div><label class="fl" for="filter">Tampilkan</label>
+          <select class="inp" id="filter">
+            <option value="all">Semua murid</option>
+            <option value="wait">Menunggu nilai menulis atau berbicara</option>
+            <option value="0">Pemula (A1)</option>
+            <option value="1">Dasar (A2)</option>
+            <option value="2">Menengah (B1)</option>
+            <option value="3">Lanjutan (B1 kuat–B2)</option>
+          </select></div>
+        <div><label class="fl" for="sort">Urutkan</label>
+          <select class="inp" id="sort">
+            <option value="new">Terbaru</option>
+            <option value="name">Nama A–Z</option>
+            <option value="hi">Rata-rata tertinggi</option>
+            <option value="lo">Rata-rata terendah</option>
+          </select></div>
+        <button class="btn ghost" id="csv" type="button">Unduh CSV</button>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr>
+            <th>Masuk</th><th>Nama</th>
+            <th class="num">Tata bahasa /30</th><th class="num">Membaca /10</th><th class="num">Menyimak /10</th>
+            <th class="num">Menulis /16</th><th class="num">Berbicara /16</th>
+            <th class="num">Rata-rata</th><th>Kelas</th><th></th>
+          </tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="empty" hidden></div>
+    </section>
+
+    <p class="lead" style="font-size:13px">Nilai menulis dan berbicara diisi guru dengan menjumlahkan skor 4 aspek rubrik (masing-masing 1 sampai 4, maksimal 16). Kelas muncul otomatis setelah kelima nilai terisi. Rata-rata level = (Tata bahasa + Membaca + Menyimak + Menulis + 2 × Berbicara) ÷ 6.</p>
+  </div>
+</main>
+
+<script src="config.js"></script>
+<script src="scoring.js"></script>
+<script src="guru.js"></script>
+</body>
+</html>

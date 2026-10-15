@@ -1,0 +1,9 @@
+Folder ini opsional.
+
+Secara bawaan, rekaman menyimak diputar dengan suara bawaan gadget (text-to-speech).
+Jika Anda punya rekaman sendiri yang lebih jernih, simpan di folder ini dengan nama:
+
+  listening1.mp3   (Rekaman 1: dialog Sari dan Tono)
+  listening2.mp3   (Rekaman 2: pengumuman English Day)
+
+Aplikasi otomatis memakai file tersebut jika ada. Naskahnya ada di dokumen PDF instrumen.
